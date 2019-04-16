@@ -3,15 +3,21 @@
 ## Authors
 
 Pranav Bhusari
+
 Scott Luntz
+
 Matt Quigley
+
 Myles Lesser
+
 Justin Walshager
 
 ## Class
 
 CNIT 27200
+
 Professor: Dawn Laux
+
 Team 11
 
 ## Tasks
@@ -464,7 +470,7 @@ Make an update to a single record in one of your tables. Explain the update and 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -499,7 +505,7 @@ Update a set of records in one statement (more than one row should be updated). 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -534,7 +540,7 @@ Add 2 rows to one of your tables. Run a query to display the newly added rows. E
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -569,6 +575,7 @@ Delete a row from one of your tables. Explain the deletion and then perform the 
 
 #### Assigned to
 
+Pranav Bhusari
 
 
 #### SQL Statment
@@ -604,7 +611,7 @@ Alter a table by adding a new column. Do a DESCRIBE after you have added the new
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -639,7 +646,7 @@ Populate the new column for all records in the table. It can be the same value f
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -674,7 +681,7 @@ Update a record using SUBSTR in the SET. Explain the update and then perform the
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
@@ -709,7 +716,7 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
