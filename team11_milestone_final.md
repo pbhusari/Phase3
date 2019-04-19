@@ -350,20 +350,35 @@ Use HAVING to filter an aggregated function (use Count, Sum, Min, Max or Avg in 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    department_departmentid,
+    avg(salary)
+from
+    employee
+group by
+    department_departmentid
+having
+    avg(salary) >
+                  (
+                    select
+                      avg(salary)
+                    from
+                      employee
+                  );
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|DEPARTMENT_DEPARTMENTID|AVG(SALARY)|
+|-----------------------|-----------|
+|TECH                   |104        |
+|EXEC                   |120        |
 
-```
 
 ### Task 12
 
@@ -371,20 +386,36 @@ Build a SQL statement that filters with both a WHERE clause and a HAVING clause.
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    MANUFACTURERER,
+    avg(heightinches * widthinches * lengthinches) as volume
+from
+    inventory_item
+where
+    quantity > 5
+group by
+    MANUFACTURERER
+having
+    avg(heightinches * widthinches * lengthinches) >
+                                                    (
+                                                        select
+                                                            avg(heightinches * widthinches * lengthinches)
+                                                        from
+                                                            inventory_item
+                                                    );
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|MANUFACTURERER|VOLUME|
+|--------------|------|
+|Monoprice     |8662  |
 
-```
 
 ### Task 13
 
@@ -392,20 +423,40 @@ Build an INNER JOIN between just two tables. The chosen attributes in the Select
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    employee.firstname,
+    employee.lastname,
+    employee.DEPARTMENT_DEPARTMENTID,
+    department.building
+from
+    employee inner join department
+        on department.DEPARTMENTID =  employee.DEPARTMENT_DEPARTMENTID
+where
+    (employee.DEPARTMENT_DEPARTMENTID  in (select department_departmentid from employee))
+    and
+    (department.building like '%South St%');
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|FIRSTNAME |LASTNAME|DEPARTMENT_DEPARTMENTID|BUILDING    |
+|----------|--------|-----------------------|------------|
+|Patrick   |Bateman |EXEC                   |100 South St|
+|Andrew    |Yang    |HR                     |100 South St|
+|Ricardo   |Chandler|MGMT                   |120 South St|
+|Donald    |Sanders |PAY                    |120 South St|
+|John      |Smith   |TECH                   |110 South St|
+|Bernie    |Trump   |TECH                   |110 South St|
+|Christian |Chandler|TECH                   |110 South St|
+|Paul      |Allen   |TECH                   |110 South St|
+|Alexandria|Ramerez |TECH                   |110 South St|
 
-```
+
 
 ### Task 14
 
@@ -413,20 +464,67 @@ Build a query that has to pull from at least 4 different tables. The attributes 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+       INVOICELINEID,
+       ITEMTYPE,
+       INVOICELINE.DESCRIPTION,
+       QUANTITY,
+       UNITPRICE,
+       TAX,
+       INVOICEID,
+       ISSUEDATE,
+       DUEDATE,
+       SUBJECT,
+       PURCHASE_ORDER_ORDERID,
+       ORDERID,
+       "Date",
+       DELIVERYDATE,
+       EMPLOYEE_EMPLOYEEID,
+       EMPLOYEEID,
+       FIRSTNAME,
+       LASTNAME,
+       to_char(HIREDATE, 'Day, Month, DD, YYYY'),
+       DEPARTMENTID,
+       BUILDING,
+       DEPARTMENT.DESCRIPTION
+from
+    INVOICELINE inner join INVOICE I
+        on INVOICELINE.INVOICE_INVOICEID = I.INVOICEID
+    inner join PURCHASE_ORDER
+        ON I.PURCHASE_ORDER_ORDERID = PURCHASE_ORDER.ORDERID
+    inner join EMPLOYEE E
+        on PURCHASE_ORDER.EMPLOYEE_EMPLOYEEID = E.EMPLOYEEID
+    inner join DEPARTMENT
+        on E.DEPARTMENT_DEPARTMENTID = DEPARTMENT.DEPARTMENTID;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|INVOICE_INVOICEID|INVOICELINEID|ITEMTYPE|DESCRIPTION                           |QUANTITY|UNITPRICE|TAX |INVOICEID |ISSUEDATE          |DUEDATE            |SUBJECT                           |PURCHASE_ORDER_ORDERID|ORDERID   |Date               |DELIVERYDATE       |EMPLOYEE_EMPLOYEEID|EMPLOYEEID|FIRSTNAME|LASTNAME|TO_CHAR(HIREDATE,'DAY,MONTH,DD,YYYY')|DEPARTMENTID|BUILDING      |DESCRIPTION|
+|-----------------|-------------|--------|--------------------------------------|--------|---------|----|----------|-------------------|-------------------|----------------------------------|----------------------|----------|-------------------|-------------------|-------------------|----------|---------|--------|-------------------------------------|------------|--------------|-----------|
+|1                |1            |Service |Consultation Fee                      |2       |15       |0   |1|2014-04-07 19:31:06|2014-05-07 19:31:06|Purdue Analytics Consultation Sale|1                     |1|2014-04-07 19:31:06|2014-04-10 19:31:16|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|1                |2            |Product |Monitors Sold                         |3       |150      |0.08|1|2014-04-07 19:31:06|2014-05-07 19:31:06|Purdue Analytics Consultation Sale|1                     |1|2014-04-07 19:31:06|2014-04-10 19:31:16|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|2                |1            |Product |Desktop Computers                     |10      |666      |0.08|2|2014-05-08 19:31:34|2014-06-08 19:31:34|DataTech Equipement Purchase      |2                     |2|2014-05-08 19:31:34|2014-05-11 19:31:43|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|3                |1            |Service |Server Space Rent                     |12      |0.5      |0   |3|2014-09-15 19:32:13|2014-11-15 19:32:13|DataTech Server Lease             |3                     |3|2014-09-15 19:32:13|2014-09-09 19:32:22|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|4                |1            |Product |Laptops Sold For DataTech Equipment   |2       |300      |0.08|4|2014-10-07 19:32:54|2014-11-07 19:32:54|DataTech Employee Laptops         |4                     |4|2014-10-07 19:32:54|2014-10-11 19:33:02|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|5                |1            |Service |Fake data population                  |5       |75       |0   |5|2014-12-05 19:33:23|2015-01-05 19:33:23|DataTech Fake SQL Data            |5                     |5|2014-12-05 19:33:23|2014-12-18 19:33:52|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|6                |1            |Service |Pied Piper Legal Fees, lawyer hours   |10      |1000     |0   |6|2015-01-08 19:34:41|2015-10-08 19:34:41|Pied Piper Legal Fees             |6                     |6|2015-01-08 19:34:41|2019-01-11 19:34:52|0002               |0002|Patrick  |Bateman |Saturday , November , 06, 1999       |EXEC        |100 South St  |Executive  |
+|7                |1            |Product |Endframe licensing fee for 2 computers|2       |150      |0.08|7|2016-08-09 19:35:31|2016-11-09 19:35:31|Endframe License                  |7                     |7|2016-08-09 19:35:31|2016-08-14 19:35:41|0002               |0002|Patrick  |Bateman |Saturday , November , 06, 1999       |EXEC        |100 South St  |Executive  |
+|8                |1            |Service |Messaging service, quantity per client|30      |10       |0.01|8|2017-09-11 19:35:48|2017-10-11 19:35:48|Optimoji Messaging Service        |8                     |8|2017-09-11 19:35:48|2017-09-13 19:35:59|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|9                |1            |Product |Pizza                                 |10      |5        |0.08|9|2018-08-12 19:36:08|2018-09-12 19:36:08|Sliceline Pizza                   |9                     |9|2018-08-12 19:36:08|2018-08-11 19:36:43|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|10               |1            |Product |Pizza                                 |10      |5        |0.08|10|2019-02-07 19:36:52|2019-03-07 19:36:52|Sliceline Pizza                   |10                    |10|2019-02-07 19:36:52|2019-02-14 19:36:58|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|10               |2            |Product |Pizza                                 |10      |5        |0.08|10|2019-02-07 19:36:52|2019-03-07 19:36:52|Sliceline Pizza                   |10                    |10|2019-02-07 19:36:52|2019-02-14 19:36:58|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|10               |3            |Product |Pizza                                 |10      |5        |0.08|10|2019-02-07 19:36:52|2019-03-07 19:36:52|Sliceline Pizza                   |10                    |10|2019-02-07 19:36:52|2019-02-14 19:36:58|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|10               |4            |Product |Pizza                                 |10      |5        |0.08|10|2019-02-07 19:36:52|2019-03-07 19:36:52|Sliceline Pizza                   |10                    |10|2019-02-07 19:36:52|2019-02-14 19:36:58|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|9                |2            |Product |Pizza                                 |10      |5        |0.08|9|2018-08-12 19:36:08|2018-09-12 19:36:08|Sliceline Pizza                   |9                     |9|2018-08-12 19:36:08|2018-08-11 19:36:43|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|9                |3            |Product |Pizza                                 |10      |5        |0.08|9|2018-08-12 19:36:08|2018-09-12 19:36:08|Sliceline Pizza                   |9                     |9|2018-08-12 19:36:08|2018-08-11 19:36:43|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
+|9                |4            |Product |Pizza                                 |10      |5        |0.08|9|2018-08-12 19:36:08|2018-09-12 19:36:08|Sliceline Pizza                   |9                     |9|2018-08-12 19:36:08|2018-08-11 19:36:43|0003               |0003|Huey     |Lewis   |Monday   , April    , 02, 2001       |SHIP        |200 North Side|Shipping   |
 
-```
 
 ### Task 15
 
@@ -434,20 +532,32 @@ Use a nested subquery to find a pool of data and then the outer query is looking
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    DEPARTMENTID
+from
+     DEPARTMENT
+where
+    (DEPARTMENTID  in (select department_departmentid from employee))
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|DEPARTMENTID|
+|------------|
+|EXEC        |
+|HR          |
+|MGMT        |
+|PAY         |
+|REC         |
+|SHIP        |
+|TECH        |
 
-```
+
 
 ### Task 16
 
@@ -455,20 +565,27 @@ Use a subquery to find results that are greater than an average result in your n
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    INVOICELINEID,
+    DESCRIPTION,
+    QUANTITY * UNITPRICE * (TAX + 1) as total_price
+from INVOICELINE
+where QUANTITY * UNITPRICE * (TAX + 1) > (select avg(QUANTITY * UNITPRICE * (TAX + 1)) from INVOICELINE);
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|INVOICELINEID|DESCRIPTION                        |TOTAL_PRICE|
+|-------------|-----------------------------------|-----------|
+|1            |Desktop Computers                  |7192.8     |
+|1            |Pied Piper Legal Fees, lawyer hours|10000      |
 
-```
+
 
 ### Task 17
 
@@ -476,20 +593,35 @@ Build an INNER JOIN between two tables and include an aggregate function in the 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    INVOICEID, subject, sum(quantity*UNITPRICE) as invoice_subtotal
+from
+     INVOICE inner join INVOICELINE I on INVOICE.INVOICEID = I.INVOICE_INVOICEID
+group by
+    invoiceid, subject
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|INVOICEID |SUBJECT                           |INVOICE_SUBTOTAL|
+|----------|----------------------------------|----------------|
+|1|Purdue Analytics Consultation Sale|480             |
+|3|DataTech Server Lease             |6               |
+|6|Pied Piper Legal Fees             |10000           |
+|8|Optimoji Messaging Service        |300             |
+|5|DataTech Fake SQL Data            |375             |
+|10|Sliceline Pizza                   |200             |
+|4|DataTech Employee Laptops         |600             |
+|2|DataTech Equipement Purchase      |6660            |
+|7|Endframe License                  |300             |
+|9|Sliceline Pizza                   |200             |
 
-```
+
 
 ### Task 18
 
