@@ -2,7 +2,7 @@
 
 ## Authors
 
-Pranav Bhusari
+Pranav Bhusari **
 
 Scott Luntz
 
@@ -73,7 +73,7 @@ Use LIKE in a filter (with the % wildcard). Use LIKE in such a way that the filt
 
 
 
-#### SQL Statment
+#### SQL Statement
 
 ```SQL
 
@@ -472,32 +472,71 @@ Make an update to a single record in one of your tables. Explain the update and 
 
 Pranav Bhusari
 
+#### Explanation
+
+This SQL statment *updates* the `EMPLOYEE` table by *setting* the `salary` of all emloyees to 30 (thousand) *where* the `employeeID` reads as `0012      `.
+In other words, this sets Pranav Bhusari's salary to 30.0 from a null value.
+
+#### Before Query
+
+```SQL
+select * from employee
+```
+
+#### Before results
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |0    |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |2    |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |3    |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |5    |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |6    |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |2    |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |0    |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |9    |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |0    |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |9    |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |      |     |     |
+
 #### SQL Statment
 
 ```SQL
-
+update employee
+set salary = 30
+where employeeID = '0012      ';
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
-
+1 row updated.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
-```SQL
-
+```sql
+select * from employee
 ```
 
 ### Follow-up Results
 
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |0    |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |2    |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |3    |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |5    |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |6    |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |2    |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |0    |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |9    |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |0    |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |9    |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
 
-```
 
 ### Task 23
 
@@ -507,32 +546,72 @@ Update a set of records in one statement (more than one row should be updated). 
 
 Pranav Bhusari
 
+#### Explanation
+
+Because it is the end of the year, I want to reset all of the bonuses of the employees on the table back to zero.
+
+I can do this by running a SQL statment that *updates* the `EMPLOYEE` table by *setting* the `bonus` row to be zero for all records. (no where clause)
+
+#### Before SQL Statment
+
+```SQL
+select * from employee;
+```
+
+#### Before SQL results
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |0    |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |2    |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |3    |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |5    |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |6    |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |2    |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |0    |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |9    |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |0    |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |9    |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
+
+
 #### SQL Statment
 
 ```SQL
-
+update employee
+set bonus = NULL;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
-
+12 rows updated.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
 ```SQL
-
+select * from employee;
 ```
 
 ### Follow-up Results
 
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
 
-```
 
 ### Task 24
 
@@ -542,32 +621,131 @@ Add 2 rows to one of your tables. Run a query to display the newly added rows. E
 
 Pranav Bhusari
 
+#### Explanation
+
+Two new employees joined the company just today. To add them to the database, we must first complete a record in the `EMPLOYEE`s table first for each of them.
+These SQL statments *insert* two records *into* the `EMPLOYEE` table. The *values* of these records are stated later in the query.
+
+#### Before query
+
+```
+select * from employee
+```
+
+#### Before results
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0013      |Jack      |Smith   |18-APR-19|2055551337 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
+
 #### SQL Statment
 
 ```SQL
+INSERT INTO EMPLOYEE
+  (
+    EMPLOYEEID,
+    FIRSTNAME,
+    LASTNAME,
+    HIREDATE,
+    PHONENUMBER,
+    ADDRESS,
+    DEPARTMENT_DEPARTMENTID,
+    SALARY,
+    BONUS,
+    RAISE)
+VALUES
+  (
+    '0013      ',
+    'Jack',
+    'Smith',
+    TO_DATE('2019-04-18 23:32:48', 'YYYY-MM-DD HH24:MI:SS'),
+    '2055551337',
+    '1 Infinite Loop',
+    'TECH',
+    100.00,
+    0.00,
+    0.00
+  );
 
+INSERT INTO EMPLOYEE
+  (
+    EMPLOYEEID,
+    FIRSTNAME,
+    LASTNAME,
+    HIREDATE,
+    PHONENUMBER,
+    ADDRESS,
+    DEPARTMENT_DEPARTMENTID,
+    SALARY,
+    BONUS,
+    RAISE
+  )
+VALUES
+  (
+    '0014      ',
+    'John ',
+    'Smith',
+    TO_DATE('2019-04-18 23:32:48',
+    'YYYY-MM-DD HH24:MI:SS'),
+    '2055551338',
+    '1 Infinite Loop',
+    'TECH',
+    100.00,
+    0.00,
+    0.00
+  );
+
+commit;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
+1 row inserted.
 
+
+1 row inserted.
+
+Commit complete.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
 ```SQL
-
+select * from employee
 ```
 
 ### Follow-up Results
 
-```
-
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0013      |Jack      |Smith   |18-APR-19|2055551337 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
 
 ### Task 25
 
@@ -577,33 +755,79 @@ Delete a row from one of your tables. Explain the deletion and then perform the 
 
 Pranav Bhusari
 
+#### Explanation
+
+It looks like Jack got a better jobs on the day after. He left and they never looked back, not even an offer letter. Since they quit, we need to get rid of their record from the database.
+
+This SQL statment *deletes* records *from* the `EMPLOYEE` table *where* the `employeeID` matches that of Jack.
+
+#### Before Statment
+
+```SQL
+select * from employee;
+```
+
+#### Before Results
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0013      |Jack      |Smith   |18-APR-19|2055551337 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
+
 
 #### SQL Statment
 
 ```SQL
-
+delete from employee
+where employeeid='0013      '
+commit;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
+1 row deleted.
 
+
+Commit complete.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
 ```SQL
-
+select * from employee;
 ```
 
 ### Follow-up Results
 
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |
 
-```
 
 ### Task 26
 
@@ -613,32 +837,68 @@ Alter a table by adding a new column. Do a DESCRIBE after you have added the new
 
 Pranav Bhusari
 
+#### Explanation
+
+DataTech needs to keep in touch with the times. I mean sure, phone numbers might do the job for the average law firm. Since DataTech is a cool tech company, however, we need a cool, new, and hip way to contact our employees: email.
+This sql statment *alters* the `EMPLOYEE` table by *adding* a new `varchar` attribute names email with a length of 50.
+
+#### Before Statment
+
+```sql
+DESCRIBE employee
+```
+
+#### Before results
+
+|Name      |Null?     |Type    |
+|----------|----------|--------|
+|EMPLOYEEID|NOT NULL  |CHAR(10)|
+|FIRSTNAME |          |VARCHAR2(50)|
+|LASTNAME  |          |VARCHAR2(50 CHAR)|
+|HIREDATE  |          |DATE    |
+|PHONENUMBER|          |VARCHAR2(10 CHAR)|
+|ADDRESS   |          |VARCHAR2(35 CHAR)|
+|DEPARTMENT_DEPARTMENTID|          |CHAR(10)|
+|SALARY    |          |NUMBER(9,2)|
+|BONUS     |          |NUMBER(9,2)|
+|RAISE     |          |NUMBER(2,2)|
+
+
 #### SQL Statment
 
 ```SQL
-
+alter table employee
+  add email varchar(50);
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
-
+Table EMPLOYEE altered.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
 ```SQL
-
+describe employee;
 ```
 
 ### Follow-up Results
 
-```
+|Name      |Null?     |Type    |
+|----------|----------|--------|
+|EMPLOYEEID|NOT NULL  |CHAR(10)|
+|FIRSTNAME |          |VARCHAR2(50)|
+|LASTNAME  |          |VARCHAR2(50 CHAR)|
+|HIREDATE  |          |DATE    |
+|PHONENUMBER|          |VARCHAR2(10 CHAR)|
+|ADDRESS   |          |VARCHAR2(35 CHAR)|
+|DEPARTMENT_DEPARTMENTID|          |CHAR(10)|
+|SALARY    |          |NUMBER(9,2)|
+|BONUS     |          |NUMBER(9,2)|
+|RAISE     |          |NUMBER(2,2)|
+|EMAIL     |          |VARCHAR2(50)|
 
-```
 
 ### Task 27
 
@@ -648,32 +908,81 @@ Populate the new column for all records in the table. It can be the same value f
 
 Pranav Bhusari
 
+#### Explanation
+
+To assign each employee with a unique email, you can concatenate their first and last names together.
+The following SQL statment *updates* the `EMPLOYEE` table by *setting* the email to be the `firstname` of the employee concatenated with the `lastname` of the employee concatenated with the email domain "@dataTech.co".
+
+#### Before Statment
+
+```sql
+select * from employee;
+```
+
+#### Before Results
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL|
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|-----|
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |     |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |     |
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |     |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |     |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |     |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |     |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |     |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |     |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |     |
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |     |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |     |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |     |
+
+
 #### SQL Statment
 
-```SQL
 
+```SQL
+update employee
+    set email = (firstname || lastname || '@dataTech.co' );
+commit;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
+13 rows selected.
 
+
+13 rows updated.
+
+
+Commit complete.
 ```
-
-#### Explanation
 
 ### Follow-up Query
 
 ```SQL
-
+select * from employee;
 ```
 
 ### Follow-up Results
 
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL                        |
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|-----------------------------|
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |John Smith@dataTech.co       |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |ChristianChandler@dataTech.co|
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |PatrickBateman@dataTech.co   |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |HueyLewis@dataTech.co        |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |PaulAllen@dataTech.co        |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |Andrew Yang@dataTech.co      |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |DonaldSanders@dataTech.co    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |BernieTrump@dataTech.co      |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |AlexandriaRamerez@dataTech.co|
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |RicardoChandler@dataTech.co  |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |ChristianChantor@dataTech.co |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |Myles Lesser@dataTech.co     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |Pranav Bhusari@dataTech.co   |
 
-```
 
 ### Task 28
 
@@ -751,17 +1060,17 @@ Your choice. Build a query. Can be as simple or complex as you want. Run the que
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select to_char(sysdate, 'MM-DD-YYYY HH24:MI:SS') as CURRENT_TIME
+from dual;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
-
-```
+|CURRENT_TIME|
+|------------|
+|04-18-2019 19:30:28|
