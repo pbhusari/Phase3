@@ -2,7 +2,7 @@
 
 ## Authors
 
-Pranav Bhusari **
+Pranav Bhusari
 
 Scott Luntz
 
@@ -28,20 +28,30 @@ Start with a single table query with 3 attributes and one filter in the WHERE cl
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+   firstname,
+   lastname,
+   phonenumber
+from
+   employee
+where
+   Department_departmentid like 'TECH      ';
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
-
-```
+|FIRSTNAME |LASTNAME|PHONENUMBER|
+|----------|--------|-----------|
+|John      |Smith   |2055551338 |
+|Christian |Chandler|2025550139 |
+|Paul      |Allen   |2025550187 |
+|Bernie    |Trump   |2025550119 |
+|Alexandria|Ramerez |2025550132 |
 
 ### Task 2
 
@@ -50,20 +60,30 @@ In a single table query, filter between two dates. Include appropriate attribute
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    invoiceid,
+    issuedate
+from
+    invoice
+where
+    issuedate
+        between
+            to_date('01-01-2018', 'MM-DD-YYYY')
+            and
+            to_date('12-31-2018', 'MM-DD-YYYY');
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|INVOICEID |ISSUEDATE|
+|----------|---------|
+|9|12-AUG-18|
 
-```
 
 ### Task 3
 
@@ -71,20 +91,28 @@ Use LIKE in a filter (with the % wildcard). Use LIKE in such a way that the filt
 
 #### Assigned to
 
-
+Pranav Bhuari
 
 #### SQL Statement
 
 ```SQL
-
+select
+  INVOICEID,
+  subject,
+  ISSUEDATE
+from
+  invoice
+WHERE
+  subject like '%Pizza'
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|INVOICEID |SUBJECT        |ISSUEDATE|
+|----------|---------------|---------|
+|9|Sliceline Pizza|12-AUG-18|
+|10|Sliceline Pizza|07-FEB-19|
 
-```
 
 ### Task 4
 
@@ -92,20 +120,35 @@ In the select clause, calculate two attributes to make a temporary calculated co
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    purchase_order_orderid,
+    orderlineid,
+    estimateditemprice * itemquantity as total_estimated_price
+from
+    purchase_order_line;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|PURCHASE_ORDER_ORDERID|ORDERLINEID|TOTAL_ESTIMATED_PRICE|
+|----------------------|-----------|---------------------|
+|10                    |1          |105                  |
+|10                    |2          |90                   |
+|10                    |3          |100                  |
+|10                    |4          |106                  |
+|9                     |1          |88                   |
+|9                     |2          |100                  |
+|9                     |3          |100                  |
+|1                     |1          |450                  |
+|2                     |1          |3000                 |
+|4                     |1          |630                  |
+|7                     |1          |300                  |
 
-```
 
 ### Task 5
 
@@ -113,20 +156,36 @@ Use NOT IN to filter out a list of values from an attribute in a single table qu
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    accountid,
+    accountname,
+    accountdescription
+from
+    account
+where
+    accountID not in
+                        (
+                            select
+                                account_accountid
+                            from
+                                payment
+                        );
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
-
-```
+|ACCOUNTID |ACCOUNTNAME|ACCOUNTDESCRIPTION|
+|----------|-----------|------------------|
+|5|Endframe   |Client            |
+|6|DataTech   |Company           |
+|7|FastFit    |Client            |
+|8|SliceLine  |Client            |
+|9|Optimoji   |Client            |
 
 ### Task 6
 
@@ -134,20 +193,36 @@ In the Select clause, use a Null Value function (NVL) on an attribute, and right
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    lpad(to_char(itemid), 5, '*') as item_id,
+    lpad((description), 20, '*') as description,
+    lpad(to_char(quantity), 5, '*') as quantity,
+    lpad(nvl(to_char(weightpound), 'not applicable'), 5, '*') as weightpound
+from
+    inventory_item
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|ITEM_ID|DESCRIPTION         |QUANTITY|WEIGHTPOUND|
+|-------|--------------------|--------|-----------|
+|1      |***************Pizza|***10   |****3      |
+|2      |*************Monitor|***10   |***20      |
+|3      |****Desktop Computer|****3   |***20      |
+|4      |*****Laptop Computer|****2   |****2      |
+|5      |****EndFrame License|****2   |not a      |
+|6      |********Raspberry pi|***30   |***.5      |
+|7      |*****Micro USB Cable|***30   |***.5      |
+|8      |*******32 GB SD Card|***30   |***.1      |
+|9      |************1 TB SSD|****5   |***.1      |
+|10     |*Thunderbolt Adapter|***10   |***.5      |
 
-```
+
 
 ### Task 7
 
@@ -155,20 +230,32 @@ In your database, where you have a date stored (order date, event date, etc), fi
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
+select
+    *
+from
+    employee
+where
+    hiredate =
+            (
+            select
+                min(hiredate)
+            from
+                employee
+            );
 
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|EMPLOYEEID|FIRSTNAME|LASTNAME|HIREDATE |PHONENUMBER|ADDRESS              |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL               |
+|----------|---------|--------|---------|-----------|---------------------|-----------------------|------|-----|-----|--------------------|
+|0002|Patrick  |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso|EXEC                   |120   |     |0.01 |pbateman@dataTech.co|
 
-```
 
 ### Task 8
 
@@ -176,20 +263,30 @@ Use the Count function to group by an attribute in your database. Use Count appr
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    count(*), purchase_order_orderid
+from
+    purchase_order_line
+group by
+    purchase_order_orderid;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|COUNT(*)|PURCHASE_ORDER_ORDERID|
+|--------|----------------------|
+|1       |1                     |
+|4       |10                    |
+|1       |2                     |
+|1       |4                     |
+|1       |7                     |
+|3       |9                     |
 
-```
 
 ### Task 9
 
@@ -197,20 +294,22 @@ Use the Sum function to add up a calculated column. For example: SUM(price*quant
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    sum(esitmateditemprice * itemquantity) as TOTAL_ORDER_PROCE
+from
+    purchase_order_line;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
-
-```
+|TOTAL_ORDER_PROCE|
+|-----------------|
+|5069             |
 
 ### Task 10
 
@@ -218,20 +317,32 @@ Use the Average function on either a number or date in your database. Use Group 
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    department_departmentid,
+    avg(salary)
+from
+    employee
+group by
+    department_departmentid;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|DEPARTMENT_DEPARTMENTID|AVG(SALARY)                              |
+|-----------------------|-----------------------------------------|
+|TECH                   |104                                      |
+|SHIP                   |60                                       |
+|MGMT                   |70                                       |
+|EXEC                   |120                                      |
+|HR                     |70                                       |
+|REC                    |23.33333333333333333333333333333333333333|
+|PAY                    |30                                       |
 
-```
 
 ### Task 11
 
@@ -428,20 +539,47 @@ Use UNION to join two tables together.
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    manufacturerer
+from
+    inventory_item
+union
+select
+    accountName
+from
+    account;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|MANUFACTURERER         |
+|-----------------------|
+|Breem Hall             |
+|DataTech               |
+|Dell                   |
+|EndFrame               |
+|Endframe               |
+|FastFit                |
+|LG                     |
+|MSI                    |
+|Monoprice              |
+|Optimoji               |
+|Pete Gregory Foundation|
+|Pied Piper             |
+|Purdue Analytics       |
+|Purdue Fed             |
+|Raspi Foundation       |
+|Sandisk                |
+|Seagate                |
+|SliceLine              |
+|Sliceline              |
 
-```
+
 
 ### Task 21
 
@@ -449,20 +587,28 @@ Use INTERSECT to find common values between two tables.
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+    description
+from
+    inventory_item
+intersect
+select
+    itemdescription
+from
+    receving_report_line;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|DESCRIPTION|
+|-----------|
+|Pizza      |
 
-```
 
 ### Task 22
 
@@ -1078,7 +1224,7 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 
 #### Assigned to
 
-Pranav Bhusari
+
 
 #### SQL Statment
 
