@@ -514,13 +514,13 @@ where employeeID = '0012      ';
 1 row updated.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```sql
 select * from employee
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
 |----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
@@ -589,13 +589,13 @@ set bonus = NULL;
 12 rows updated.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 select * from employee;
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
 |----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
@@ -722,13 +722,13 @@ commit;
 Commit complete.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 select * from employee
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
 |----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
@@ -804,13 +804,13 @@ commit;
 Commit complete.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 select * from employee;
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|
 |----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|
@@ -877,13 +877,13 @@ alter table employee
 Table EMPLOYEE altered.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 describe employee;
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |Name      |Null?     |Type    |
 |----------|----------|--------|
@@ -959,13 +959,13 @@ commit;
 Commit complete.
 ```
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 select * from employee;
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL                        |
 |----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|-----------------------------|
@@ -992,32 +992,85 @@ Update a record using SUBSTR in the SET. Explain the update and then perform the
 
 Pranav Bhusari
 
+#### Explanation
+
+There was a small issue in the email assignments. Not all of the names were formateed properly. To combat this, `SUBSTR` is used to make the emails more consise and standard.
+
+This sql statment *updates* the `EMPLOYEE` table by *setting* the email to the employees first initial concatenated with their last name concatenated with the email domain name (@dataTech.co).
+
+#### Before Statment
+
+```sql
+select * from employee
+```
+
+#### Before Result
+
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL                        |
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|-----------------------------|
+|0014      |John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |John Smith@dataTech.co       |
+|0001      |Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |ChristianChandler@dataTech.co|
+|0002      |Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |PatrickBateman@dataTech.co   |
+|0003      |Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |HueyLewis@dataTech.co        |
+|0004      |Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |PaulAllen@dataTech.co        |
+|0005      |Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |Andrew Yang@dataTech.co      |
+|0006      |Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |DonaldSanders@dataTech.co    |
+|0007      |Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |BernieTrump@dataTech.co      |
+|0008      |Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |AlexandriaRamerez@dataTech.co|
+|0009      |Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |RicardoChandler@dataTech.co  |
+|0010      |Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |ChristianChantor@dataTech.co |
+|0011      |Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |Myles Lesser@dataTech.co     |
+|0012      |Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |Pranav Bhusari@dataTech.co   |
+
+
 #### SQL Statment
 
 ```SQL
-
+update employee
+    set email =
+      (
+        lower(substr(firstname, 1,1))
+        ||
+        lower(lastname)
+        ||
+        '@dataTech.co'
+      );
+commit;
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
+```
+13 rows updated.
+
+
+Commit complete.
 ```
 
-```
-
-#### Explanation
-
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
-
+select * from employee;
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL                |
+|----------|----------|--------|---------|-----------|--------------------------------|-----------------------|------|-----|-----|---------------------|
+|0014|John      |Smith   |18-APR-19|2055551338 |1 Infinite Loop                 |TECH                   |100   |0    |0    |jsmith@dataTech.co   |
+|0001|Christian |Chandler|06-APR-19|2025550139 |366 Brookside Court Florence    |TECH                   |100   |     |0.01 |cchandler@dataTech.co|
+|0002|Patrick   |Bateman |06-NOV-99|2025550101 |8287 Kent Ave. owosso           |EXEC                   |120   |     |0.01 |pbateman@dataTech.co |
+|0003|Huey      |Lewis   |02-APR-01|2025550107 |7778 High Point Ave. Willoughby |SHIP                   |60    |     |0.01 |hlewis@dataTech.co   |
+|0004|Paul      |Allen   |06-SEP-18|2025550187 |8974 Argyle Court South Portland|TECH                   |100   |     |0.01 |pallen@dataTech.co   |
+|0005|Andrew    |Yang    |11-OCT-15|2025550183 |8526 Gartner St. West Warwick   |HR                     |70    |     |0.01 |ayang@dataTech.co    |
+|0006|Donald    |Sanders |27-NOV-01|2025550133 |9498 Vermont Ave. Oak Park      |PAY                    |30    |     |0    |dsanders@dataTech.co |
+|0007|Bernie    |Trump   |20-NOV-13|2025550119 |9837 Wild Rose Lane Metairie    |TECH                   |100   |     |0.01 |btrump@dataTech.co   |
+|0008|Alexandria|Ramerez |11-JUN-12|2025550132 |176 Mill Pond Ave.              |TECH                   |120   |     |0    |aramerez@dataTech.co |
+|0009|Ricardo   |Chandler|27-SEP-13|2025550167 |279 Galvin St. Sicklerville     |MGMT                   |70    |     |0.01 |rchandler@dataTech.co|
+|0010|Christian |Chantor |13-AUG-14|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30    |     |0.01 |cchantor@dataTech.co |
+|0011|Myles     |Lesser  |09-APR-13|2023214030 |14 Ross Ade Dr.                 |REC                    |10    |     |     |mlesser@dataTech.co  |
+|0012|Pranav    |Bhusari |13-JUN-12|2025551489 |15 Tarkington Bolevard          |REC                    |30    |     |     |pbhusari@dataTech.co |
 
-```
 
 ### Task 29
 
@@ -1042,13 +1095,13 @@ Pranav Bhusari
 
 #### Explanation
 
-### Follow-up Query
+#### Follow-up Query
 
 ```SQL
 
 ```
 
-### Follow-up Results
+#### Follow-up Results
 
 ```
 
