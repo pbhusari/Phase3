@@ -17,12 +17,11 @@ Matt Quigley
 
 Dawn Laux
 
-Seciton 001
-
+Section 001
 
 ## Note
 
-Tables may be out of order in results due to dataGrip reporting in hirearchical creation/deletion order instead of alphabetical selection order.
+Tables may be out of order in results due to dataGrip reporting in hirearchical creation/deletion order instead of alphabetical selection order as reflected in the SQL Statments.
 
 ## SQL Statment
 
@@ -58,7 +57,9 @@ select * from  WAREHOUSE;
 
 ```
 
-## Result
+## Results
+
+### Account
 
 |ACCOUNTID |ACCOUNTNAME            |ACCOUNTNUMBER|ACCOUNTROUTINGNUMBER|ACCOUNTDESCRIPTION|
 |----------|-----------------------|-------------|--------------------|------------------|
@@ -73,6 +74,7 @@ select * from  WAREHOUSE;
 |9|Optimoji               |31358        |215                 |Client            |
 |10|Purdue Analytics       |6131         |798                 |Client            |
 
+### DEPARTMENT
 
 |DEPARTMENTID|BUILDING      |DESCRIPTION    |DUTIES                                                      |
 |------------|--------------|---------------|------------------------------------------------------------|
@@ -87,6 +89,7 @@ select * from  WAREHOUSE;
 |HR          |100 South St  |Human Resources|Fire people                                                 |
 |EXEC        |100 South St  |Executive      |Make descisions about the company                           |
 
+### EMPLOYEE
 
 |EMPLOYEEID|FIRSTNAME |LASTNAME|HIREDATE           |PHONENUMBER|ADDRESS                         |DEPARTMENT_DEPARTMENTID|SALARY|BONUS|RAISE|EMAIL                |
 |----------|----------|--------|-------------------|-----------|--------------------------------|-----------------------|------|-----|-----|---------------------|
@@ -104,6 +107,7 @@ select * from  WAREHOUSE;
 |0011|Myles     |Lesser  |2013-04-09 19:39:28|2023214030 |14 Ross Ade Dr.                 |REC                    |10.00 |     |     |mlesser@dataTech.co  |
 |0012|Pranav    |Bhusari |2012-06-13 19:39:34|2025551489 |15 Tarkington Bolevard          |REC                    |30.00 |     |     |pbhusari@dataTech.co |
 
+### INVENTORY_ITEM
 
 |ITEMID    |DESCRIPTION        |QUANTITY|HEIGHTINCHES|WIDTHINCHES|LENGTHINCHES|WEIGHTPOUND|MANUFACTURERER  |
 |----------|-------------------|--------|------------|-----------|------------|-----------|----------------|
@@ -121,6 +125,8 @@ select * from  WAREHOUSE;
 |12|Ultrawide Monuitors|10      |50          |20         |30          |10         |Monoprice       |
 |13|gaming PC          |12      |20          |6          |12          |50         |MSI             |
 
+### INVOICE
+
 |INVOICEID |ISSUEDATE          |DUEDATE            |SUBJECT                           |PURCHASE_ORDER_ORDERID|
 |----------|-------------------|-------------------|----------------------------------|----------------------|
 |1|2014-04-07 19:31:06|2014-05-07 19:31:06|Purdue Analytics Consultation Sale|1                     |
@@ -134,6 +140,7 @@ select * from  WAREHOUSE;
 |9|2018-08-12 19:36:08|2018-09-12 19:36:08|Sliceline Pizza                   |9                     |
 |10|2019-02-07 19:36:52|2019-03-07 19:36:52|Sliceline Pizza                   |10                    |
 
+### INVOICE_LINE
 
 |INVOICE_INVOICEID|INVOICELINEID|ITEMTYPE|DESCRIPTION                           |QUANTITY|UNITPRICE|TAX |
 |-----------------|-------------|--------|--------------------------------------|--------|---------|----|
@@ -155,6 +162,7 @@ select * from  WAREHOUSE;
 |9                |3            |Product |Pizza                                 |10      |5        |0.08|
 |9                |4            |Product |Pizza                                 |10      |5        |0.08|
 
+### PAYMENT
 
 |ACCOUNT_ACCOUNTID|PAYMENTID |METHOD           |PAYMENTDATE        |PAYMENTRECIVETIME  |PAYMENTAMOUNT|INVOICE_INVOICEID|
 |-----------------|----------|-----------------|-------------------|-------------------|-------------|-----------------|
@@ -173,6 +181,7 @@ select * from  WAREHOUSE;
 |1                |9|Credit Card      |2018-08-16 19:36:08|2018-08-16 20:36:08|108          |9                |
 |1                |14|Credit Card      |2018-08-16 19:36:08|2018-08-16 20:36:08|108          |9                |
 
+### PURCHASE_ORDER
 
 |ORDERID   |Date               |DELIVERYDATE       |EMPLOYEE_EMPLOYEEID|
 |----------|-------------------|-------------------|-------------------|
@@ -188,6 +197,7 @@ select * from  WAREHOUSE;
 |10|2019-02-07 19:36:52|2019-02-14 19:36:58|0003               |
 |11|2017-07-08 19:45:48|2019-07-10 19:45:56|0003               |
 
+### PURCHASE_ORDER_LINE
 
 |PURCHASE_ORDER_ORDERID|ORDERLINEID|ESITMATEDITEMPRICE|ITEMQUANTITY|INVENTORY_ITEM_ITEMID|
 |----------------------|-----------|------------------|------------|---------------------|
@@ -203,6 +213,8 @@ select * from  WAREHOUSE;
 |4                     |1          |315               |2           |4                    |
 |7                     |1          |150               |2           |5                    |
 
+### RECEVING_RECIEPT
+
 |RECEVINGRECIEPTID|SHIPMENT_SHIPMENTID|EMPLOYEE_EMPLOYEEID|SHIPPINGDOCK|DATERECIVED        |
 |-----------------|-------------------|-------------------|------------|-------------------|
 |RR1              |1                  |0010               |Dock A      |2014-04-11 19:31:06|
@@ -216,6 +228,7 @@ select * from  WAREHOUSE;
 |RR9              |2                  |0011               |Dock C      |2014-09-09 19:31:06|
 |RR10             |3                  |0011               |Dock D      |2014-09-16 19:31:06|
 
+### RECEVING_REPORT_LINE
 
 |RECEVINGREPORTLINEID|RECEVINGRECIEPTID|ITEMDESCRIPTION                       |ITEMQUANTITY|ITEMPRICE|
 |--------------------|-----------------|--------------------------------------|------------|---------|
@@ -231,6 +244,7 @@ select * from  WAREHOUSE;
 |3                   |RR10             |Pizza                                 |10          |5        |
 |2                   |RR10             |Pizza                                 |10          |5        |
 
+### SHIPMENT
 
 |SHIPMENTID|Date               |PURCHASE_ORDER_ORDERID|SUPPLIER        |FULFILMENTMETHOD|DROPLOCATION|PRICEPERPOUND|WEIGHT|
 |----------|-------------------|----------------------|----------------|----------------|------------|-------------|------|
@@ -246,6 +260,7 @@ select * from  WAREHOUSE;
 |3|2014-04-07 19:31:06|1                     |Alibaba         |Over Land       |Warehouse   |1            |20    |
 |11|2014-05-08 19:31:34|2                     |Alibaba         |Over Land       |Warehouse   |2            |10    |
 
+### STOCKPILE
 
 |INVENTORY_ITEM_ITEMID|WAREHOUSE_WAREHOUSEID|LASTINVENTORYCHECKDATE|QUANTITY|
 |---------------------|---------------------|----------------------|--------|
@@ -259,6 +274,7 @@ select * from  WAREHOUSE;
 |1                    |6                    |2019-01-06 17:30:49   |7       |
 |1                    |10                   |2019-04-07 17:35:36   |3       |
 
+### WAREHOUSE
 
 |WAREHOUSEID|STREETADDRESS           |STATE|CITY           |ZIPCODE |NAME                                 |DATEESTABLISHED    |
 |-----------|------------------------|-----|---------------|--------|-------------------------------------|-------------------|
