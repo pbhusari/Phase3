@@ -1,4 +1,4 @@
-# Final Milestone SQL Statments
+# Final Milestone SQL Statements
 
 ## Authors
 
