@@ -91,7 +91,7 @@ Use LIKE in a filter (with the % wildcard). Use LIKE in such a way that the filt
 
 #### Assigned to
 
-Pranav Bhuari
+Pranav Bhusari
 
 #### SQL Statement
 
