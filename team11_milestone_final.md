@@ -28,7 +28,13 @@ Start with a single table query with 3 attributes and one filter in the WHERE cl
 
 #### Assigned to
 
+Justin Walshager
+
+#### Backup
+
 Pranav Bhusari
+
+
 
 #### SQL Statment
 
@@ -59,6 +65,10 @@ In a single table query, filter between two dates. Include appropriate attribute
 
 
 #### Assigned to
+
+Justin Walshager
+
+#### Backup
 
 Pranav Bhusari
 
@@ -91,6 +101,10 @@ Use LIKE in a filter (with the % wildcard). Use LIKE in such a way that the filt
 
 #### Assigned to
 
+Justin Walshager
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statement
@@ -119,6 +133,10 @@ WHERE
 In the select clause, calculate two attributes to make a temporary calculated column. Give it a column alias. For example: Select price, quantity, price * quantity AS TOTAL_PRICE.
 
 #### Assigned to
+
+Justin Walshager
+
+#### Backup
 
 Pranav Bhusari
 
@@ -155,6 +173,10 @@ from
 Use NOT IN to filter out a list of values from an attribute in a single table query.
 
 #### Assigned to
+
+Justin Walshager
+
+#### Backup
 
 Pranav Bhusari
 
@@ -193,6 +215,10 @@ In the Select clause, use a Null Value function (NVL) on an attribute, and right
 
 #### Assigned to
 
+Scott Luntz
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -230,6 +256,10 @@ In your database, where you have a date stored (order date, event date, etc), fi
 
 #### Assigned to
 
+Scott Luntz
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -263,6 +293,10 @@ Use the Count function to group by an attribute in your database. Use Count appr
 
 #### Assigned to
 
+Scott Luntz
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -294,6 +328,10 @@ Use the Sum function to add up a calculated column. For example: SUM(price*quant
 
 #### Assigned to
 
+Scott Luntz
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -316,6 +354,10 @@ from
 Use the Average function on either a number or date in your database. Use Group by to group the average by one field in the result set. (ie, Average price of each equipment type)
 
 #### Assigned to
+
+Scott Luntz
+
+#### Backup
 
 Pranav Bhusari
 
@@ -349,6 +391,10 @@ group by
 Use HAVING to filter an aggregated function (use Count, Sum, Min, Max or Avg in a query)
 
 #### Assigned to
+
+Myles Lesser
+
+#### Backup
 
 Pranav Bhusari
 
@@ -386,6 +432,10 @@ Build a SQL statement that filters with both a WHERE clause and a HAVING clause.
 
 #### Assigned to
 
+Myles Lesser
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -422,6 +472,10 @@ having
 Build an INNER JOIN between just two tables. The chosen attributes in the Select clause should come from both tables. Filter with at least two items in the WHERE clause.
 
 #### Assigned to
+
+Myles Lesser
+
+#### Backup
 
 Pranav Bhusari
 
@@ -463,6 +517,10 @@ where
 Build a query that has to pull from at least 4 different tables. The attributes in the Select clause should come from at least two of the tables. Include a date as one of your attributes and set the date format to report out like: Saturday, November 24, 2018.
 
 #### Assigned to
+
+Myles Lesser
+
+#### Backup
 
 Pranav Bhusari
 
@@ -532,6 +590,10 @@ Use a nested subquery to find a pool of data and then the outer query is looking
 
 #### Assigned to
 
+Myles Lesser
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -565,6 +627,10 @@ Use a subquery to find results that are greater than an average result in your n
 
 #### Assigned to
 
+Matt Quigley
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -592,6 +658,10 @@ where QUANTITY * UNITPRICE * (TAX + 1) > (select avg(QUANTITY * UNITPRICE * (TAX
 Build an INNER JOIN between two tables and include an aggregate function in the Select clause. Must also include the use of Group By.
 
 #### Assigned to
+
+Matt Quigley
+
+#### Backup
 
 Pranav Bhusari
 
@@ -628,6 +698,10 @@ group by
 Build a query that utilizes a LEFT OUTER JOIN. The result set should have parents that do not have children. (If you do not have this situation in your database, do an additional INSERT in the parent table in order to make the task work)
 
 #### Assigned to
+
+Matt Quigley
+
+#### Backup
 
 Pranav Bhusari
 
@@ -670,6 +744,10 @@ Build a query that utilizes a RIGHT OUTER JOIN. The result set should have child
 
 #### Assigned to
 
+Matt Quigley
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -710,6 +788,10 @@ from
 Use UNION to join two tables together.
 
 #### Assigned to
+
+Matt Quigley
+
+#### Backup
 
 Pranav Bhusari
 
@@ -759,6 +841,10 @@ Use INTERSECT to find common values between two tables.
 
 #### Assigned to
 
+Matt Quigley
+
+#### Backup
+
 Pranav Bhusari
 
 #### SQL Statment
@@ -787,6 +873,10 @@ from
 Make an update to a single record in one of your tables. Explain the update and then perform the task. Display the before, update, and after stmts/output.
 
 #### Assigned to
+
+Matt Quigley
+
+#### Backup
 
 Pranav Bhusari
 
@@ -862,6 +952,10 @@ Update a set of records in one statement (more than one row should be updated). 
 
 #### Assigned to
 
+Matt Quigley
+
+#### Backup
+
 Pranav Bhusari
 
 #### Explanation
@@ -936,6 +1030,10 @@ select * from employee;
 Add 2 rows to one of your tables. Run a query to display the newly added rows. Explain the update and then perform the task. Display the before, insert, and after stmts/output.
 
 #### Assigned to
+
+Matt Quigley
+
+#### Backup
 
 Pranav Bhusari
 
@@ -1071,6 +1169,10 @@ Delete a row from one of your tables. Explain the deletion and then perform the 
 
 #### Assigned to
 
+Matt Quigley
+
+#### Backup
+
 Pranav Bhusari
 
 #### Explanation
@@ -1155,6 +1257,10 @@ Alter a table by adding a new column. Do a DESCRIBE after you have added the new
 
 Pranav Bhusari
 
+#### Backup
+
+Myles Lesser
+
 #### Explanation
 
 DataTech needs to keep in touch with the times. I mean sure, phone numbers might do the job for the average law firm. Since DataTech is a cool tech company, however, we need a cool, new, and hip way to contact our employees: email.
@@ -1225,6 +1331,10 @@ Populate the new column for all records in the table. It can be the same value f
 #### Assigned to
 
 Pranav Bhusari
+
+#### Backup
+
+Myles Lesser
 
 #### Explanation
 
@@ -1309,6 +1419,10 @@ Update a record using SUBSTR in the SET. Explain the update and then perform the
 #### Assigned to
 
 Pranav Bhusari
+
+#### Backup
+
+Myles Lesser
 
 #### Explanation
 
@@ -1398,6 +1512,10 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 
 Pranav Bhusari
 
+#### Backup
+
+Myles Lesser
+
 
 #### Explanation
 
@@ -1461,6 +1579,10 @@ Your choice. Build a query. Can be as simple or complex as you want. Run the que
 #### Assigned to
 
 Pranav Bhusari
+
+#### Backup
+
+Myles Lesser
 
 #### SQL Statment
 
