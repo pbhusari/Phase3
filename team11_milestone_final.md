@@ -1398,6 +1398,13 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 
 Pranav Bhusari
 
+
+#### Explanation
+
+The first statment *creates* an *unique index* called `email_alt_key` *on* the `EMPLOYEE` table using the `email` attribute. This is called a alternative key because it *uniquely* identifies each record of the `EMPLOYEE` table.
+
+The second statment *creates* an *index* called `name_index` *on* the `EMPLOYEE` table using the `firstname` attribute. This is called an inversion index because it **NON-UNIQULY** identifies each record of the `EMPLOYEE` table. Think of it as a frequently used filter.
+
 #### Before Statment
 
 ```sql
@@ -1429,8 +1436,6 @@ Index created.
 
 Index created.
 ```
-
-#### Explanation
 
 #### Follow-up Query
 
