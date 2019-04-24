@@ -32,7 +32,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
    firstname,
    lastname,
@@ -64,7 +64,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     invoiceid,
     issuedate
@@ -95,7 +95,7 @@ Pranav Bhusari
 
 #### SQL Statement
 
-```SQL
+```sql
 select
   INVOICEID,
   subject,
@@ -124,7 +124,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     purchase_order_orderid,
     orderlineid,
@@ -160,7 +160,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     accountid,
     accountname,
@@ -197,7 +197,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     lpad(to_char(itemid), 5, '*') as item_id,
     lpad((description), 20, '*') as description,
@@ -234,7 +234,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     *
 from
@@ -267,7 +267,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     count(*), purchase_order_orderid
 from
@@ -298,7 +298,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     sum(esitmateditemprice * itemquantity) as TOTAL_ORDER_PROCE
 from
@@ -321,7 +321,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     department_departmentid,
     avg(salary)
@@ -354,7 +354,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     department_departmentid,
     avg(salary)
@@ -390,7 +390,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     MANUFACTURERER,
     avg(heightinches * widthinches * lengthinches) as volume
@@ -427,7 +427,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     employee.firstname,
     employee.lastname,
@@ -468,7 +468,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
        INVOICELINEID,
        ITEMTYPE,
@@ -536,7 +536,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     DEPARTMENTID
 from
@@ -569,7 +569,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     INVOICELINEID,
     DESCRIPTION,
@@ -597,7 +597,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     INVOICEID, subject, sum(quantity*UNITPRICE) as invoice_subtotal
 from
@@ -633,7 +633,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
        departmentid
 from
@@ -674,7 +674,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
        EMPLOYEEID,
        FIRSTNAME,
@@ -715,7 +715,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     manufacturerer
 from
@@ -763,7 +763,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select
     description
 from
@@ -797,7 +797,7 @@ In other words, this sets Pranav Bhusari's salary to 30.0 from a null value.
 
 #### Before Query
 
-```SQL
+```sql
 select * from employee
 ```
 
@@ -820,7 +820,7 @@ select * from employee
 
 #### SQL Statment
 
-```SQL
+```sql
 update employee
 set salary = 30
 where employeeID = '0012      ';
@@ -872,7 +872,7 @@ I can do this by running a SQL statment that *updates* the `EMPLOYEE` table by *
 
 #### Before SQL Statment
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -896,7 +896,7 @@ select * from employee;
 
 #### SQL Statment
 
-```SQL
+```sql
 update employee
 set bonus = NULL;
 ```
@@ -909,7 +909,7 @@ set bonus = NULL;
 
 #### Follow-up Query
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -971,7 +971,7 @@ select * from employee
 
 #### SQL Statment
 
-```SQL
+```sql
 INSERT INTO EMPLOYEE
   (
     EMPLOYEEID,
@@ -1042,7 +1042,7 @@ Commit complete.
 
 #### Follow-up Query
 
-```SQL
+```sql
 select * from employee
 ```
 
@@ -1081,7 +1081,7 @@ This SQL statment *deletes* records *from* the `EMPLOYEE` table *where* the `emp
 
 #### Before Statment
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -1107,7 +1107,7 @@ select * from employee;
 
 #### SQL Statment
 
-```SQL
+```sql
 delete from employee
 where employeeid='0013      '
 commit;
@@ -1124,7 +1124,7 @@ Commit complete.
 
 #### Follow-up Query
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -1184,7 +1184,7 @@ DESCRIBE employee
 
 #### SQL Statment
 
-```SQL
+```sql
 alter table employee
   add email varchar(50);
 ```
@@ -1197,7 +1197,7 @@ Table EMPLOYEE altered.
 
 #### Follow-up Query
 
-```SQL
+```sql
 describe employee;
 ```
 
@@ -1259,7 +1259,7 @@ select * from employee;
 #### SQL Statment
 
 
-```SQL
+```sql
 update employee
     set email = (firstname || lastname || '@dataTech.co' );
 commit;
@@ -1279,7 +1279,7 @@ Commit complete.
 
 #### Follow-up Query
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -1343,7 +1343,7 @@ select * from employee
 
 #### SQL Statment
 
-```SQL
+```sql
 update employee
     set email =
       (
@@ -1367,7 +1367,7 @@ Commit complete.
 
 #### Follow-up Query
 
-```SQL
+```sql
 select * from employee;
 ```
 
@@ -1422,7 +1422,7 @@ WHERE   table_name = 'EMPLOYEE';
 
 #### SQL Statment
 
-```SQL
+```sql
 CREATE UNIQUE INDEX email_ALT_KEY
     ON Employee (Email);
 CREATE INDEX name_index
@@ -1439,7 +1439,7 @@ Index created.
 
 #### Follow-up Query
 
-```SQL
+```sql
 SELECT  *
 FROM    all_indexes
 WHERE   table_name = 'EMPLOYEE';
@@ -1464,7 +1464,7 @@ Pranav Bhusari
 
 #### SQL Statment
 
-```SQL
+```sql
 select to_char(sysdate, 'MM-DD-YYYY HH24:MI:SS') as CURRENT_TIME
 from dual;
 ```
