@@ -629,20 +629,40 @@ Build a query that utilizes a LEFT OUTER JOIN. The result set should have parent
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
-
+select
+       departmentid
+from
+    DEPARTMENT left join EMPLOYEE
+        on DEPARTMENT.DEPARTMENTID = EMPLOYEE.DEPARTMENT_DEPARTMENTID
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|DEPARTMENTID|
+|------------|
+|TECH        |
+|TECH        |
+|EXEC        |
+|SHIP        |
+|TECH        |
+|HR          |
+|PAY         |
+|TECH        |
+|TECH        |
+|MGMT        |
+|REC         |
+|REC         |
+|REC         |
+|SALES       |
+|INV         |
+|ACCT        |
 
-```
+
 
 ### Task 19
 
@@ -650,20 +670,40 @@ Build a query that utilizes a RIGHT OUTER JOIN. The result set should have child
 
 #### Assigned to
 
-
+Pranav Bhusari
 
 #### SQL Statment
 
 ```SQL
+select
+       EMPLOYEEID,
+       FIRSTNAME,
+       LASTNAME,
+       DEPARTMENTID
+from
+    DEPARTMENT right join EMPLOYEE E on DEPARTMENT.DEPARTMENTID = E.DEPARTMENT_DEPARTMENTID;
 
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
-```
+|EMPLOYEEID|FIRSTNAME |LASTNAME|DEPARTMENTID|
+|----------|----------|--------|------------|
+|0014|John      |Smith   |TECH        |
+|0001|Christian |Chandler|TECH        |
+|0002|Patrick   |Bateman |EXEC        |
+|0003|Huey      |Lewis   |SHIP        |
+|0004|Paul      |Allen   |TECH        |
+|0005|Andrew    |Yang    |HR          |
+|0006|Donald    |Sanders |PAY         |
+|0007|Bernie    |Trump   |TECH        |
+|0008|Alexandria|Ramerez |TECH        |
+|0009|Ricardo   |Chandler|MGMT        |
+|0010|Christian |Chantor |REC         |
+|0011|Myles     |Lesser  |REC         |
+|0012|Pranav    |Bhusari |REC         |
+|0015|Oliver    |Twist   |            |
 
-```
 
 ### Task 20
 
@@ -1356,19 +1396,38 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 
 #### Assigned to
 
+Pranav Bhusari
+
+#### Before Statment
+
+```sql
+SELECT  *
+FROM    all_indexes
+WHERE   table_name = 'EMPLOYEE';
+```
+
+#### Before Results
+
+|OWNER   |INDEX_NAME   |INDEX_TYPE|TABLE_OWNER|TABLE_NAME|TABLE_TYPE|UNIQUENESS|COMPRESSION|PREFIX_LENGTH|TABLESPACE_NAME|INI_TRANS|MAX_TRANS|INITIAL_EXTENT|NEXT_EXTENT|MIN_EXTENTS|MAX_EXTENTS|PCT_INCREASE|PCT_THRESHOLD|INCLUDE_COLUMN|FREELISTS|FREELIST_GROUPS|PCT_FREE|LOGGING|BLEVEL|LEAF_BLOCKS|DISTINCT_KEYS|AVG_LEAF_BLOCKS_PER_KEY|AVG_DATA_BLOCKS_PER_KEY|CLUSTERING_FACTOR|STATUS|NUM_ROWS|SAMPLE_SIZE|LAST_ANALYZED      |DEGREE|INSTANCES|PARTITIONED|TEMPORARY|GENERATED|SECONDARY|BUFFER_POOL|FLASH_CACHE|CELL_FLASH_CACHE|USER_STATS|DURATION|PCT_DIRECT_ACCESS|ITYP_OWNER|ITYP_NAME|PARAMETERS|GLOBAL_STATS|DOMIDX_STATUS|DOMIDX_OPSTATUS|FUNCIDX_STATUS|JOIN_INDEX|IOT_REDUNDANT_PKEY_ELIM|DROPPED|VISIBILITY|DOMIDX_MANAGEMENT|SEGMENT_CREATED|ORPHANED_ENTRIES|INDEXING|
+|--------|-------------|----------|-----------|----------|----------|----------|-----------|-------------|---------------|---------|---------|--------------|-----------|-----------|-----------|------------|-------------|--------------|---------|---------------|--------|-------|------|-----------|-------------|-----------------------|-----------------------|-----------------|------|--------|-----------|-------------------|------|---------|-----------|---------|---------|---------|-----------|-----------|----------------|----------|--------|-----------------|----------|---------|----------|------------|-------------|---------------|--------------|----------|-----------------------|-------|----------|-----------------|---------------|----------------|--------|
+|PBHUSARI|EMPLOYEE_PK  |NORMAL    |PBHUSARI   |EMPLOYEE  |TABLE     |UNIQUE    |DISABLED   |             |USERS          |2        |255      |65536         |1048576    |1          |2147483645 |            |             |              |         |               |10      |YES    |0     |1          |14           |1                      |1                      |3                |VALID |14      |14         |2019-04-23 23:33:31|1     |1        |NO         |N        |N        |N        |DEFAULT    |DEFAULT    |DEFAULT         |NO        |        |                 |          |         |          |YES         |             |               |              |NO        |NO                     |NO     |VISIBLE   |                 |YES            |NO              |FULL    |
 
 
 #### SQL Statment
 
 ```SQL
-
+CREATE UNIQUE INDEX email_ALT_KEY
+    ON Employee (Email);
+CREATE INDEX name_index
+	ON employee (firstname);
 ```
 
 #### Results
 
-(Note: Import sql --> csv --> markdown for pretty tables)
 ```
+Index created.
 
+Index created.
 ```
 
 #### Explanation
@@ -1376,14 +1435,19 @@ Create an alternate key and an inversion entry for one of your tables. Run a que
 #### Follow-up Query
 
 ```SQL
-
+SELECT  *
+FROM    all_indexes
+WHERE   table_name = 'EMPLOYEE';
 ```
 
 #### Follow-up Results
 
-```
+|OWNER   |INDEX_NAME   |INDEX_TYPE|TABLE_OWNER|TABLE_NAME|TABLE_TYPE|UNIQUENESS|COMPRESSION|PREFIX_LENGTH|TABLESPACE_NAME|INI_TRANS|MAX_TRANS|INITIAL_EXTENT|NEXT_EXTENT|MIN_EXTENTS|MAX_EXTENTS|PCT_INCREASE|PCT_THRESHOLD|INCLUDE_COLUMN|FREELISTS|FREELIST_GROUPS|PCT_FREE|LOGGING|BLEVEL|LEAF_BLOCKS|DISTINCT_KEYS|AVG_LEAF_BLOCKS_PER_KEY|AVG_DATA_BLOCKS_PER_KEY|CLUSTERING_FACTOR|STATUS|NUM_ROWS|SAMPLE_SIZE|LAST_ANALYZED      |DEGREE|INSTANCES|PARTITIONED|TEMPORARY|GENERATED|SECONDARY|BUFFER_POOL|FLASH_CACHE|CELL_FLASH_CACHE|USER_STATS|DURATION|PCT_DIRECT_ACCESS|ITYP_OWNER|ITYP_NAME|PARAMETERS|GLOBAL_STATS|DOMIDX_STATUS|DOMIDX_OPSTATUS|FUNCIDX_STATUS|JOIN_INDEX|IOT_REDUNDANT_PKEY_ELIM|DROPPED|VISIBILITY|DOMIDX_MANAGEMENT|SEGMENT_CREATED|ORPHANED_ENTRIES|INDEXING|
+|--------|-------------|----------|-----------|----------|----------|----------|-----------|-------------|---------------|---------|---------|--------------|-----------|-----------|-----------|------------|-------------|--------------|---------|---------------|--------|-------|------|-----------|-------------|-----------------------|-----------------------|-----------------|------|--------|-----------|-------------------|------|---------|-----------|---------|---------|---------|-----------|-----------|----------------|----------|--------|-----------------|----------|---------|----------|------------|-------------|---------------|--------------|----------|-----------------------|-------|----------|-----------------|---------------|----------------|--------|
+|PBHUSARI|EMAIL_ALT_KEY|NORMAL    |PBHUSARI   |EMPLOYEE  |TABLE     |UNIQUE    |DISABLED   |             |USERS          |2        |255      |65536         |1048576    |1          |2147483645 |            |             |              |         |               |10      |YES    |0     |1          |13           |1                      |1                      |3                |VALID |13      |13         |2019-04-23 23:42:20|1     |1        |NO         |N        |N        |N        |DEFAULT    |DEFAULT    |DEFAULT         |NO        |        |                 |          |         |          |YES         |             |               |              |NO        |NO                     |NO     |VISIBLE   |                 |YES            |NO              |FULL    |
+|PBHUSARI|EMPLOYEE_PK  |NORMAL    |PBHUSARI   |EMPLOYEE  |TABLE     |UNIQUE    |DISABLED   |             |USERS          |2        |255      |65536         |1048576    |1          |2147483645 |            |             |              |         |               |10      |YES    |0     |1          |14           |1                      |1                      |3                |VALID |14      |14         |2019-04-23 23:33:31|1     |1        |NO         |N        |N        |N        |DEFAULT    |DEFAULT    |DEFAULT         |NO        |        |                 |          |         |          |YES         |             |               |              |NO        |NO                     |NO     |VISIBLE   |                 |YES            |NO              |FULL    |
+|PBHUSARI|NAME_INDEX   |NORMAL    |PBHUSARI   |EMPLOYEE  |TABLE     |NONUNIQUE |DISABLED   |             |USERS          |2        |255      |65536         |1048576    |1          |2147483645 |            |             |              |         |               |10      |YES    |0     |1          |13           |1                      |1                      |5                |VALID |14      |14         |2019-04-23 23:43:53|1     |1        |NO         |N        |N        |N        |DEFAULT    |DEFAULT    |DEFAULT         |NO        |        |                 |          |         |          |YES         |             |               |              |NO        |NO                     |NO     |VISIBLE   |                 |YES            |NO              |FULL    |
 
-```
 
 ### Task 30
 

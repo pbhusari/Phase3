@@ -106,6 +106,9 @@ select * from  WAREHOUSE;
 |0010|Christian |Chantor |2014-08-13 19:25:36|2025550137 |15 Railroad Ave. Lenoir         |REC                    |30.00 |     |0.01 |cchantor@dataTech.co |
 |0011|Myles     |Lesser  |2013-04-09 19:39:28|2023214030 |14 Ross Ade Dr.                 |REC                    |10.00 |     |     |mlesser@dataTech.co  |
 |0012|Pranav    |Bhusari |2012-06-13 19:39:34|2025551489 |15 Tarkington Bolevard          |REC                    |30.00 |     |     |pbhusari@dataTech.co |
+|0015|Oliver    |Twist   |2019-04-24 03:26:27|           |                                |                       |0.05  |0.00 |0.00 |                     |
+
+
 
 ### INVENTORY_ITEM
 
